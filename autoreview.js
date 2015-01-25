@@ -47,11 +47,16 @@ embedFunction('showAutoreviewButtons', function() {
 			var span = '<span class="pln zomis">' + afterBreak + '</span>';
 			console.log("clog befor " + beforeBreak);
 			console.log("clog after " + afterBreak);
+			var elBefore = first;
+			var checkbox = '<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>';
 			if (afterBreak.length !== 0) {
-				element.after(span);
+				first.before(checkbox);
+				first = element.after(checkbox + span);
 			}
-			first.before('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
-			first = null;
+			else {
+				element.after(checkbox);
+				first = null;
+			}
 			line = afterBreak;
 		}
 		else {
