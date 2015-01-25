@@ -61,4 +61,4 @@ embedFunction('showAutoreviewButtons', function() {
 	}
 });
 
-$('code').parent().before("<span class='lsep'>|</span><a href='javascript:void(0);' onclick='showAutoreviewButtons()'>review</a>");
+$('pre code').parent().before("<span class='lsep'>|</span><a href='javascript:void(0);' onclick='showAutoreviewButtons()'>review</a>");
