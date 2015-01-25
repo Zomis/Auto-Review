@@ -55,7 +55,7 @@ embedFunction('showAutoreviewButtons', function() {
 			line = afterBreak;
 		}
 		else {
-			line += element.text();
+			line += element.text().replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 		}
 		
 	}
