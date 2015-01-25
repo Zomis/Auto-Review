@@ -42,16 +42,16 @@ embedFunction('showAutoreviewButtons', function() {
 			var beforeBreak = element.text().substr(0, lastBreak);
 			var afterBreak = element.text().substr(lastBreak + 1);
 			element.text(beforeBreak + "\n");
-			var dataProperty = ""; // 'data-line="' + line + '" ';
+			var dataProperty = 'data-line="' + line + '" ';
 			var span = '<span class="pln zomis">' + afterBreak + '</span>';
 			console.log("clog befor " + beforeBreak);
 			console.log("clog after " + afterBreak);
-			if (afterBreak.length === 0) {
-				span = "";
+			if (afterBreak.length !== 0) {
+				element.after(span);
 			}
-			first.before('<input type="checkbox" ></input>' + span);
+			first.before('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
 			first = null;
-			line = "";
+			line = afterBreak;
 		}
 		else {
 			line += element.text();
