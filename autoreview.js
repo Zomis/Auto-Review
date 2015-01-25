@@ -26,6 +26,7 @@ function embedFunction(name, theFunction) {
 embedFunction('showAutoreviewButtons', function() {
 	var spans = $("code span");
 	console.log(spans.length);
+	$('.zomis-debug').text("review-debug");
 	
 	var i;
 	var count = spans.length;
@@ -66,4 +67,4 @@ embedFunction('showAutoreviewButtons', function() {
 	}
 });
 
-$('pre code').parent().before("<span class='lsep'>|</span><a href='javascript:void(0);' onclick='showAutoreviewButtons()'>review</a>");
+$('pre code').parent().before('<span class="lsep">|</span><a href="javascript:void(0);" class="zomis-debug" onclick="showAutoreviewButtons()">review</a>');
