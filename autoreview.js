@@ -35,11 +35,61 @@ embedFunction('showAutoreviewButtons', function() {
 	for (i = 0; i < count; i++) {
 		var element = $(spans[ i ]);
 		
+		/*
+		first = element where input will be placed before, first element on a line
+		element = element containing the line break(s)
+		
+		when you find an element with line break,
+		
+		- delete everything after the linebreak itself and add a span after the linebreak, with class `pln`
+		- add checkbox at the beginning of the previous line
+		- change text of current
+		*/
+		
 		if (first === null) {
 			first = element;
 		}
 		if (element.text().indexOf("\n") !== -1) {
 			console.log(i + " line: " + line);
+			
+			var lines = element.text().split("\n");
+			for (var line_index = 0; line_index < lines.length; line_index++) {
+				var current_line = lines[ line_index ];
+				line += current_line;
+				
+				if (line_index > 0) {
+					if ((line_index === lines.length - 1) && (current_line.length === 0)) {
+						first = null;
+						break;
+					}
+					span = '<span class="pln zomis">' + current_line + '\n</span>';
+					element = element.after(span);
+					first = element;
+				}
+				
+				
+				
+				var dataProperty = 'data-line="' + line + '" ';
+				var checkbox = '<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>';
+				first.before(checkbox);
+				first = null;
+				element.text(current_line + "\n");
+				
+				line = "";
+				
+				
+				/*
+					/* comment
+					line
+					another line
+					end comment *** /
+				*/
+			}
+		}
+		else {
+			line += element.text().replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+		}
+			/*
 			var lastBreak = element.text().lastIndexOf("\n");
 			var beforeBreak = element.text().substr(0, lastBreak);
 			var afterBreak = element.text().substr(lastBreak + 1);
@@ -59,10 +109,7 @@ embedFunction('showAutoreviewButtons', function() {
 				first = null;
 			}
 			line = afterBreak;
-		}
-		else {
-			line += element.text().replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-		}
+			
 		
 	}
 });
