@@ -13,6 +13,7 @@
 // @include       http://stackapps.com/*
 // @include       http://askubuntu.com/*
 // @include       http://*.stackexchange.com/*
+// @exclude       http://chat.stackexchange.com/*
 // ==/UserScript==
 
 function embedFunction(name, theFunction) {
