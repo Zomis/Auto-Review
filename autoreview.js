@@ -22,12 +22,29 @@ function embedFunction(name, theFunction) {
     document.getElementsByTagName('head')[0].appendChild(script);
 }
 
-function showAutoreviewButtons() {
-	alert("test");
-}
-
 embedFunction('showAutoreviewButtons', function() {
-    alert("Hello World!");
+	var spans = $("code span");
+	console.log(spans.length);
+	
+	var i;
+	var count = spans.length;
+	var line = "";
+	var first = null;
+	for (i = 0; i < count; i++) {
+		console.log(i);
+		var element = $(spans[ i ]);
+		
+		if (first === null) {
+			first = element;
+		}
+		if (element.text().indexOf("\n") !== -1) {
+			console.log( i + ": " + element.text() );
+			first.before('<input type="checkbox" data-line="' + line + '" />');
+			first = null;
+			line = "";
+		}
+		
+	}
 });
 
 $('.post-menu').append("<span class='lsep'>|</span><a href='javascript:void(0);' onclick='showAutoreviewButtons()'>review</a>");
