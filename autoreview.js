@@ -63,20 +63,22 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 						first = null;
 						break;
 					}
-					span = '<span class="pln zomis">' + current_line + '\n</span>';
+					span = '<span class="pln zomis">' + current_line + '</span>';
 					element = element.after(span);
 					first = element;
+					continue;
 				}
 				
+				if (line.length > 0) {
+					var dataProperty = 'data-line="' + line + '" ';
+					var checkbox = '<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>';
+					first.before(checkbox);
+					first = null;
+					element.text(current_line + "\n");
 				
+					line = "";
+				}
 				
-				var dataProperty = 'data-line="' + line + '" ';
-				var checkbox = '<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>';
-				first.before(checkbox);
-				first = null;
-				element.text(current_line + "\n");
-				
-				line = "";
 				
 				
 				/*
@@ -90,27 +92,6 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		else {
 			line += element.text().replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 		}
-			/*
-			var lastBreak = element.text().lastIndexOf("\n");
-			var beforeBreak = element.text().substr(0, lastBreak);
-			var afterBreak = element.text().substr(lastBreak + 1);
-			element.text(beforeBreak + "\n");
-			var dataProperty = 'data-line="' + line + '" ';
-			var span = '<span class="pln zomis">' + afterBreak + '</span>';
-			console.log("clog befor " + beforeBreak);
-			console.log("clog after " + afterBreak);
-			var elBefore = first;
-			var checkbox = '<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>';
-			if (afterBreak.length !== 0) {
-				first.before(checkbox);
-				first = element.after(checkbox + span);
-			}
-			else {
-				element.after(checkbox);
-				first = null;
-			}
-			line = afterBreak;
-			
 		
 	}
 });
