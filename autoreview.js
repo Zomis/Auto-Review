@@ -26,7 +26,6 @@ function embedFunction(name, theFunction) {
 embedFunction('showAutoreviewButtons', function(clickedObject) {
 	
 	var i;
-	alert($(clickedObject));
 	if ($(clickedObject).text() === "review-debug") {
 		var answer = $("#wmd-input");
 		var answer_text = answer.val();
