@@ -40,8 +40,8 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				continue;
 			}
 			
-			var checkbox = $(checkboxes[ i ]);
-			var line_data = ( checkbox ).data( 'line' )
+			var checkbox = $(checkboxes[i]);
+			var line_data = (checkbox).data('line');
 			block.push(line_data);
 			if ((i === checkboxes.length - 1) || !$(checkboxes[i + 1]).prop('checked')) {
 				// add block
@@ -78,7 +78,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 	var line = "";
 	var first = null;
 	for (i = 0; i < count; i++) {
-		var element = $(spans[ i ]);
+		var element = $(spans[i]);
 		
 		if (first === null) {
 			first = element;
@@ -89,8 +89,8 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 			var lines = element.text().split("\n");
 			element.text("");
 			for (var line_index = 1; line_index < lines.length; line_index++) {
-				var current_line = lines[ line_index ];
-				var prev_line = lines[ line_index - 1 ];
+				var current_line = lines[line_index];
+				var prev_line = lines[line_index - 1];
 				
 				var span;
 				// Add the last part of the previous line
