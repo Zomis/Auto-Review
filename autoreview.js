@@ -75,15 +75,14 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 					line = current_line;
 					first = null;
 				}
-				if (current_line.length > 0) {
-					if (line_index < lines.length - 1) {
-						current_line += "\n";
-					}
-					span = $('<span class="pln zomis after">' + current_line + '</span>');
-					element.after(span);
-					first = span;
-					element = span;
+				
+				if (line_index < lines.length - 1) {
+					current_line += "\n";
 				}
+				span = $('<span class="pln zomis after">' + current_line + '</span>');
+				element.after(span);
+				first = span;
+				element = span;
 			}
 		}
 		else {
