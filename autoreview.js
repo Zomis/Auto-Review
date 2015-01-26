@@ -61,9 +61,12 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				
 				line += prev_line;
 				
-				var span = $('<span class="pln zomis before">' + prev_line + '\n</span>');
-				element.after(span);
-				element = span;
+				var span;
+				if (line_index == 1) {
+					span = $('<span class="pln zomis before">' + prev_line + '\n</span>');
+					element.after(span);
+					element = span;
+				}
 				
 				if (line.length > 0) {
 					var dataProperty = 'data-line="' + line + '" ';
@@ -73,9 +76,13 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 					first = null;
 				}
 				if (current_line.length > 0) {
+					if (line_index < lines.length - 1) {
+						current_line += "\n";
+					}
 					span = $('<span class="pln zomis after">' + current_line + '</span>');
 					element.after(span);
 					first = span;
+					element = span;
 				}
 			}
 		}
