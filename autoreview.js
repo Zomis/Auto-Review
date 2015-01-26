@@ -84,11 +84,10 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				var current_line = lines[ line_index ];
 				var prev_line = lines[ line_index - 1 ];
 				
-				line += prev_line;
-				
 				var span;
 				// Add the last part of the previous line
 				if (line_index == 1) {
+					line += prev_line;
 					span = $('<span class="pln zomis before">' + prev_line + '\n</span>');
 					element.after(span);
 					element = span;
@@ -99,7 +98,6 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 					var dataProperty = 'data-line="' + line + '" ';
 					var checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
 					first.before(checkbox);
-					line = current_line;
 					first = null;
 				}
 				
@@ -111,6 +109,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				element.after(span);
 				first = span;
 				element = span;
+				line = current_line;
 			}
 		}
 		else {
