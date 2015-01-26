@@ -54,39 +54,26 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 			console.log(i + " line: " + line);
 			
 			var lines = element.text().split("\n");
-			for (var line_index = 0; line_index < lines.length; line_index++) {
+			element.text("");
+			for (var line_index = 1; line_index < lines.length; line_index++) {
 				var current_line = lines[ line_index ];
-				line += current_line;
+				var prev_line = lines[ line_index - 1 ];
 				
-				if (line_index > 0) {
-					if ((line_index === lines.length - 1) && (current_line.length === 0)) {
-						first = null;
-						break;
-					}
-					span = '<span class="pln zomis">' + current_line + '</span>';
-					element = element.after(span);
-					first = element;
-					continue;
-				}
+				line += prev_line;
+				
+				var span = '<span class="pln zomis before">' + prev_line + '\n</span>';
+				element = element.after(span);
 				
 				if (line.length > 0) {
 					var dataProperty = 'data-line="' + line + '" ';
 					var checkbox = '<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>';
 					first.before(checkbox);
-					first = null;
-					element.text(current_line + "\n");
-				
 					line = "";
 				}
-				
-				
-				
-				/*
-					/* comment
-					line
-					another line
-					end comment *** /
-				*/
+				if (current_line.length > 0) {
+					span = '<span class="pln zomis after">' + current_line + '</span>';
+					first = element.after(span);
+				}
 			}
 		}
 		else {
