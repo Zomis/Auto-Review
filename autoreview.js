@@ -26,7 +26,7 @@ function embedFunction(name, theFunction) {
 embedFunction('showAutoreviewButtons', function(clickedObject) {
 	
 	var i;
-	if ($(clickedObject).text() === "review-debug") {
+	if ($(clickedObject).data('review')) {
 		var answer = $("#wmd-input");
 		var answer_text = answer.val();
 		
@@ -50,7 +50,8 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		
 		return;
 	}
-	$(clickedObject).text("review-debug");
+	$(clickedObject).data('review', true);
+	$(clickedObject).text("Add to answer");
 	
 	var spans = $("code span", $(clickedObject).next());
 	console.log(spans.length);
@@ -60,17 +61,6 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 	var first = null;
 	for (i = 0; i < count; i++) {
 		var element = $(spans[ i ]);
-		
-		/*
-		first = element where input will be placed before, first element on a line
-		element = element containing the line break(s)
-		
-		when you find an element with line break,
-		
-		- delete everything after the linebreak itself and add a span after the linebreak, with class `pln`
-		- add checkbox at the beginning of the previous line
-		- change text of current
-		*/
 		
 		if (first === null) {
 			first = element;
@@ -119,4 +109,4 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 	}
 });
 
-$('pre code').parent().before('<span class="lsep">|</span><a href="javascript:void(0);" class="zomis-debug" onclick="showAutoreviewButtons($(this))">review</a>');
+$('pre code').parent().before('<a href="javascript:void(0);" onclick="showAutoreviewButtons($(this))">(Review)</a>');
