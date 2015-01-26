@@ -24,12 +24,38 @@ function embedFunction(name, theFunction) {
 }
 
 embedFunction('showAutoreviewButtons', function(clickedObject) {
+	
+	var i;
+	alert($(clickedObject));
+	if ($(clickedObject).text() === "review-debug") {
+		var answer = $("#wmd-input");
+		var answer_text = answer.val();
+		
+		// loop through checkboxes and prepare answer
+		var checkboxes = $("input.autoreview");
+		for (i = 0; i < checkboxes.length; i++) {
+			if (!$(checkboxes[i]).prop('checked')) {
+				continue;
+			}
+			
+			var checkbox = $(checkboxes[ i ]);
+			var line_data = ( checkbox ).data( 'line' )
+			
+			answer_text	= "    " + line_data + "\n" + answer_text;
+			if ((i < checkboxes.length - 1) && !$(checkboxes[i + 1]).prop('checked')) {
+				answer_text	= "\n---\n\n" + answer_text;
+			}
+		}
+		
+		answer.val(answer_text);
+		
+		return;
+	}
 	$(clickedObject).text("review-debug");
 	
 	var spans = $("code span", $(clickedObject).next());
 	console.log(spans.length);
 	
-	var i;
 	var count = spans.length;
 	var line = "";
 	var first = null;
@@ -72,7 +98,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				// Add the checkbox for the previous line
 				if (line.length > 0) {
 					var dataProperty = 'data-line="' + line + '" ';
-					var checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>');
+					var checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
 					first.before(checkbox);
 					line = current_line;
 					first = null;
