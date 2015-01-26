@@ -61,18 +61,20 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				
 				line += prev_line;
 				
-				var span = '<span class="pln zomis before">' + prev_line + '\n</span>';
-				element = element.after(span);
+				var span = $('<span class="pln zomis before">' + prev_line + '\n</span>');
+				element.after(span);
+				element = span;
 				
 				if (line.length > 0) {
 					var dataProperty = 'data-line="' + line + '" ';
-					var checkbox = '<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>';
+					var checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>');
 					first.before(checkbox);
 					line = "";
 				}
 				if (current_line.length > 0) {
-					span = '<span class="pln zomis after">' + current_line + '</span>';
-					first = element.after(span);
+					span = $('<span class="pln zomis after">' + current_line + '</span>');
+					element.after(span);
+					first = span;
 				}
 			}
 		}
