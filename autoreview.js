@@ -110,7 +110,11 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		else {
 			line += element.text().replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 		}
-		
+	}
+	if (line.length > 0) {
+		dataProperty = 'data-line="' + line + '" ';
+		checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
+		first.before(checkbox);
 	}
 });
 
