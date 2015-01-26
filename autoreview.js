@@ -29,6 +29,8 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 	if ($(clickedObject).data('review')) {
 		var answer = $("#wmd-input");
 		var answer_text = answer.val();
+		var added_lines = 0;
+		var added_blocks = 0;
 		
 		// loop through checkboxes and prepare answer
 		var checkboxes = $("input.autoreview");
@@ -41,12 +43,15 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 			var line_data = ( checkbox ).data( 'line' )
 			
 			answer_text	= answer_text + "\n    " + line_data;
-			if ((i < checkboxes.length - 1) && !$(checkboxes[i + 1]).prop('checked')) {
+			added_lines++;
+			if ((i === checkboxes.length - 1) || !$(checkboxes[i + 1]).prop('checked')) {
 				answer_text	+= "\n\n---\n";
+				added_blocks++;
 			}
 		}
 		
 		answer.val(answer_text);
+		alert(added_lines + " lines in " + added_blocks + " blocks added to answer.");
 		
 		return;
 	}
