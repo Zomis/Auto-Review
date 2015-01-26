@@ -70,6 +70,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 					var checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>');
 					first.before(checkbox);
 					line = current_line;
+					first = null;
 				}
 				if (current_line.length > 0) {
 					span = $('<span class="pln zomis after">' + current_line + '</span>');
