@@ -3,7 +3,7 @@
 // @author        Simon Forsberg
 // @namespace     zomis
 // @homepage      https://www.github.com/Zomis/Auto-Review
-// @description	  Adds checkboxes for copying code in the question to an answer.
+// @description	  Adds checkboxes for copying code in a post to an answer.
 // @include       http://stackoverflow.com/*
 // @include       http://meta.stackoverflow.com/*
 // @include       http://superuser.com/*
