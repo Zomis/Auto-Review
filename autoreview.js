@@ -62,12 +62,14 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				line += prev_line;
 				
 				var span;
+				// Add the last part of the previous line
 				if (line_index == 1) {
 					span = $('<span class="pln zomis before">' + prev_line + '\n</span>');
 					element.after(span);
 					element = span;
 				}
 				
+				// Add the checkbox for the previous line
 				if (line.length > 0) {
 					var dataProperty = 'data-line="' + line + '" ';
 					var checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview' + line_index + '"></input>');
@@ -76,6 +78,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 					first = null;
 				}
 				
+				// Add the beginning <span> element for the current line
 				if (line_index < lines.length - 1) {
 					current_line += "\n";
 				}
