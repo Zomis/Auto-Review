@@ -34,6 +34,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		
 		// loop through checkboxes and prepare answer
 		var checkboxes = $("input.autoreview");
+		var block = [];
 		for (i = 0; i < checkboxes.length; i++) {
 			if (!$(checkboxes[i]).prop('checked')) {
 				continue;
@@ -41,12 +42,24 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 			
 			var checkbox = $(checkboxes[ i ]);
 			var line_data = ( checkbox ).data( 'line' )
-			
-			answer_text	= answer_text + "\n    " + line_data;
-			added_lines++;
+			block.push(line_data);
 			if ((i === checkboxes.length - 1) || !$(checkboxes[i + 1]).prop('checked')) {
+				// add block
+				var block_line;
+				var cut_count = 1000;
+				for (block_line = 0; block_line < block.length; block_line++) {
+					var cut_this = block[block_line].indexOf(block[block_line].trim());
+					if (cut_count > cut_this) {
+						cut_count = cut_this;
+					}
+				}
+				for (block_line = 0; block_line < block.length; block_line++) {
+					answer_text	= answer_text + "\n    " + block[block_line].substr(cut_count);
+				}
 				answer_text	+= "\n\n---\n";
+				added_lines += block.length;
 				added_blocks++;
+				block = [];
 			}
 		}
 		
