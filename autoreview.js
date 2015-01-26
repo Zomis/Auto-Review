@@ -41,9 +41,9 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 			var checkbox = $(checkboxes[ i ]);
 			var line_data = ( checkbox ).data( 'line' )
 			
-			answer_text	= "    " + line_data + "\n" + answer_text;
+			answer_text	= answer_text + "\n    " + line_data;
 			if ((i < checkboxes.length - 1) && !$(checkboxes[i + 1]).prop('checked')) {
-				answer_text	= "\n---\n\n" + answer_text;
+				answer_text	+= "\n\n---\n";
 			}
 		}
 		
