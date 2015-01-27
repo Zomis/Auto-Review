@@ -82,6 +82,20 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 	var count = spans.length;
 	var line = "";
 	var first = null;
+	
+	var checkboxClick = function(e) {
+		if (e.shiftKey) {
+			var all_checkboxes = $('code checkbox.autoreview');
+			var current_checkbox = $(this);
+			var selected = !current_checkbox.prop('checked');
+			do {
+				current_checkbox.prop('checked', !selected);
+				current_checkbox = current_checkbox.prevAll('.autoreview:first');
+			}
+			while (current_checkbox.length === 1 && current_checkbox.prop('checked') == selected);
+		}
+	}
+	
 	for (i = 0; i < count; i++) {
 		var element = $(spans[i]);
 		
@@ -109,6 +123,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 					checkbox = $('<input type="checkbox" class="autoreview"></input>');
 					first.before(checkbox);
 					checkbox.data('line', line);
+					checkbox.click(checkboxClick);
 					first = null;
 				}
 				
@@ -131,6 +146,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		checkbox = $('<input type="checkbox" class="autoreview"></input>');
 		first.before(checkbox);
 		checkbox.data('line', line);
+		checkbox.click(checkboxClick);
 	}
 });
 
