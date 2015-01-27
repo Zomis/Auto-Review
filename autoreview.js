@@ -1,5 +1,7 @@
+/** @preserve
 // ==UserScript==
 // @name          Auto-Review
+// @grant         none
 // @author        Simon Forsberg
 // @namespace     zomis
 // @homepage      https://www.github.com/Zomis/Auto-Review
@@ -15,6 +17,7 @@
 // @include       http://*.stackexchange.com/*
 // @exclude       http://chat.stackexchange.com/*
 // ==/UserScript==
+*/
 
 function embedFunction(name, theFunction) {
     var script = document.createElement('script');
