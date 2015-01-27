@@ -29,7 +29,8 @@ function embedFunction(name, theFunction) {
 embedFunction('showAutoreviewButtons', function(clickedObject) {
 	
 	var i;
-	if ($(clickedObject).data('review')) {
+	var checkbox;
+	if (clickedObject.data('review')) {
 		var answer = $("#wmd-input");
 		var answer_text = answer.val();
 		var added_lines = 0;
@@ -39,12 +40,12 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		var checkboxes = $("input.autoreview");
 		var block = [];
 		for (i = 0; i < checkboxes.length; i++) {
-			if (!$(checkboxes[i]).prop('checked')) {
+			checkbox = $(checkboxes[i]);
+			if (!checkbox.prop('checked')) {
 				continue;
 			}
 			
-			var checkbox = $(checkboxes[i]);
-			var line_data = (checkbox).data('line');
+			var line_data = checkbox.data('line');
 			block.push(line_data);
 			if ((i === checkboxes.length - 1) || !$(checkboxes[i + 1]).prop('checked')) {
 				// add block
@@ -57,7 +58,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 					}
 				}
 				for (block_line = 0; block_line < block.length; block_line++) {
-					answer_text	= answer_text + "\n    " + block[block_line].substr(cut_count);
+					answer_text	+= "\n    " + block[block_line].substr(cut_count);
 				}
 				answer_text	+= "\n\n---\n";
 				added_lines += block.length;
@@ -71,11 +72,10 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		
 		return;
 	}
-	$(clickedObject).data('review', true);
-	$(clickedObject).text("Add to answer");
+	clickedObject.data('review', true);
+	clickedObject.text("Add to answer");
 	
-	var spans = $("code span", $(clickedObject).next());
-	console.log(spans.length);
+	var spans = $("code span", clickedObject.next());
 	
 	var count = spans.length;
 	var line = "";
@@ -87,8 +87,6 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 			first = element;
 		}
 		if (element.text().indexOf("\n") !== -1) {
-			console.log(i + " line: " + line);
-			
 			var lines = element.text().split("\n");
 			element.text("");
 			for (var line_index = 1; line_index < lines.length; line_index++) {
@@ -107,7 +105,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				// Add the checkbox for the previous line
 				if (line.length > 0) {
 					var dataProperty = 'data-line="' + line + '" ';
-					var checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
+					checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
 					first.before(checkbox);
 					first = null;
 				}
