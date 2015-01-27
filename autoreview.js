@@ -106,9 +106,9 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				
 				// Add the checkbox for the previous line
 				if (line.length > 0) {
-					var dataProperty = 'data-line="' + line + '" ';
-					checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
+					checkbox = $('<input type="checkbox" class="autoreview"></input>');
 					first.before(checkbox);
+					checkbox.data('line', line);
 					first = null;
 				}
 				
@@ -124,13 +124,13 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 			}
 		}
 		else {
-			line += element.text().replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+			line += element.text();
 		}
 	}
 	if (line.length > 0) {
-		dataProperty = 'data-line="' + line + '" ';
-		checkbox = $('<input type="checkbox" ' + dataProperty + ' class="autoreview"></input>');
+		checkbox = $('<input type="checkbox" class="autoreview"></input>');
 		first.before(checkbox);
+		checkbox.data('line', line);
 	}
 });
 
