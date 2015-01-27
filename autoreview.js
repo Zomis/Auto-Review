@@ -68,8 +68,6 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		}
 		
 		answer.val(answer_text);
-		alert(added_lines + " lines in " + added_blocks + " blocks added to answer.");
-		
 		return;
 	}
 	clickedObject.data('review', true);
