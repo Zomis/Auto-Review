@@ -99,7 +99,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				// Add the last part of the previous line
 				if (line_index == 1) {
 					line += prev_line;
-					span = $('<span class="pln zomis before">' + prev_line + '\n</span>');
+					span = $('<span class="pln">' + prev_line + '\n</span>');
 					element.after(span);
 					element = span;
 				}
@@ -116,7 +116,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				if (line_index < lines.length - 1) {
 					current_line += "\n";
 				}
-				span = $('<span class="pln zomis after">' + current_line + '</span>');
+				span = $('<span class="pln">' + current_line + '</span>');
 				element.after(span);
 				first = span;
 				element = span;
