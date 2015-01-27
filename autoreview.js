@@ -65,6 +65,7 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 				added_blocks++;
 				block = [];
 			}
+			checkbox.prop('checked', false);
 		}
 		
 		answer.val(answer_text);
