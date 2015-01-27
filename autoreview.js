@@ -68,6 +68,9 @@ embedFunction('showAutoreviewButtons', function(clickedObject) {
 		}
 		
 		answer.val(answer_text);
+        $('html, body').animate({
+            scrollTop: answer.offset().top
+        }, 1000);
 		return;
 	}
 	clickedObject.data('review', true);
