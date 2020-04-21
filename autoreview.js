@@ -1,23 +1,23 @@
 /** @preserve
- // ==UserScript==
- // @name          Auto-Review
- // @grant         none
- // @author        Simon Forsberg
- // @namespace     zomis
- // @homepage      https://www.github.com/Zomis/Auto-Review
- // @description	  Adds checkboxes for copying code in a post to an answer.
- // @include       http://stackoverflow.com/*
- // @include       http://meta.stackoverflow.com/*
- // @include       http://superuser.com/*
- // @include       http://serverfault.com/*
- // @include       http://meta.superuser.com/*
- // @include       http://meta.serverfault.com/*
- // @include       http://stackapps.com/*
- // @include       http://askubuntu.com/*
- // @include       https://*.stackexchange.com/*
- // @exclude       http://chat.stackexchange.com/*
- // ==/UserScript==
- */
+// ==UserScript==
+// @name          Auto-Review
+// @grant         none
+// @author        Simon Forsberg
+// @namespace     zomis
+// @homepage      https://www.github.com/Zomis/Auto-Review
+// @description	  Adds checkboxes for copying code in a post to an answer.
+// @include       http://stackoverflow.com/*
+// @include       http://meta.stackoverflow.com/*
+// @include       http://superuser.com/*
+// @include       http://serverfault.com/*
+// @include       http://meta.superuser.com/*
+// @include       http://meta.serverfault.com/*
+// @include       http://stackapps.com/*
+// @include       http://askubuntu.com/*
+// @include       https://*.stackexchange.com/*
+// @exclude       http://chat.stackexchange.com/*
+// ==/UserScript==
+*/
 
 const addCheckedLinesToAnswer = event => {
 	const answer = $("#wmd-input");
