@@ -65,7 +65,6 @@ const checkboxClick = event => {
 	}
 };
 const addCheckboxesToCode = event => {
-	var checkbox;
 	const clickedButton = $(event.target);
 	clickedButton.text("Add to answer")
 		.toggleClass('addCheckedLinesToAnswer addCheckboxes');
@@ -98,7 +97,7 @@ const addCheckboxesToCode = event => {
 
 				// Add the checkbox for the previous line
 				if (line.length > 0) {
-					checkbox = $('<input type="checkbox" class="autoreview"></input>');
+					const checkbox = $('<input type="checkbox" class="autoreview"></input>');
 					first.before(checkbox);
 					checkbox.data('line', line);
 					first = null;
@@ -120,7 +119,7 @@ const addCheckboxesToCode = event => {
 		}
 	});
 	if (line.length > 0) {
-		checkbox = $('<input type="checkbox" class="autoreview"></input>');
+		const checkbox = $('<input type="checkbox" class="autoreview"></input>');
 		first.before(checkbox);
 		checkbox.data('line', line);
 	}
